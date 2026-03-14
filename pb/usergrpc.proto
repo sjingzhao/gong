@@ -1,0 +1,19 @@
+syntax = "proto3";  // proto 版本
+option go_package = "./example";  // 关键：指定生成的 Go 代码输出到当前目录的 example 文件夹（包名也为 example）
+package example;    // proto 包名（可与 go_package 一致或不同）
+
+// 定义 gRPC 服务
+service UserService {
+  rpc GetUser(UserRequest) returns (User);
+  rpc AddUser(User) returns (UserRequest);
+}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserRequest {
+  int32 user_id = 1;
+}
